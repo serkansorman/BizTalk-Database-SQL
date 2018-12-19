@@ -1,5 +1,3 @@
-package BizTalkDB.src;
-
 import java.util.Date;
 
 public class Job {
