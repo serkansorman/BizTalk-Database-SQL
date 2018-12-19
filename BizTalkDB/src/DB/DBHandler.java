@@ -1,7 +1,6 @@
 package DB;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
+import java.sql.*;
 
 public class DBHandler {
 
@@ -10,12 +9,29 @@ public class DBHandler {
     private String password="";
     private String driver = "";
 
-    public Connection getConnectionLocal() throws Exception {
+    public Connection getConnection() throws Exception {
 
         Class.forName(driver);
         Connection conn = DriverManager.getConnection(dbUrl, userName, password);
 
         return conn;
+    }
+
+    public void closeConnection(Connection conn) throws SQLException {
+        if (conn != null)
+            conn.close();
+    }
+
+
+    public void closePreparedStatement (PreparedStatement pst) throws SQLException {
+        if(pst != null)
+            pst.close();
+    }
+
+
+    public void closeResultSet(ResultSet rs) throws Exception {
+        if(rs != null)
+            rs.close();
     }
 
 }
