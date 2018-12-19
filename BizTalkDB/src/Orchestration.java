@@ -1,3 +1,4 @@
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Orchestration {
@@ -18,6 +19,7 @@ public class Orchestration {
         this.ownerID = ownerID;
         this.status = status;
         this.startJobID = startJobID;
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         InsertDateTime = new Date();
         UpdateDateTime = new Date();
     }
@@ -54,15 +56,25 @@ public class Orchestration {
         this.startJobID = startJobID;
     }
 
-    public Date getInsertDateTime() {
-        return InsertDateTime;
+    public String getInsertDateTime() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        String date = dateFormat.format(InsertDateTime);
+        return date;
     }
 
-    public Date getUpdateDateTime() {
-        return UpdateDateTime;
+    public void setInsertDateTime(String time) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        this.InsertDateTime = dateFormat.parse(time);
     }
 
-    public void setUpdateDateTime(Date update) {
-        this.UpdateDateTime = update;
+    public String getUpdateDateTime() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        String date = dateFormat.format(UpdateDateTime);
+        return date;
+    }
+
+    public void setUpdateDateTime(String update) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        this.UpdateDateTime = dateFormat.parse(update);
     }
 }
