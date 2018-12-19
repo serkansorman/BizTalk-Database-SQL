@@ -1,3 +1,5 @@
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Job {
@@ -8,7 +10,7 @@ public class Job {
     private String fileUrl;
     private String relatives;
     private int status;
-    private int ruleId;            // ??????
+    private int ruleId;
     private Date insertDateTime;
     private Date updateDateTime;
 
@@ -17,7 +19,7 @@ public class Job {
     }
 
     public Job(int id,int owner,String description,String destination,String fileUrl,
-               String relatives,int status, int ruleId ,Date insertDateTime,Date updateDateTime){
+               String relatives,int status, int ruleId ){
         this.id = id;
         this.owner = owner;
         this.description = description;
@@ -26,8 +28,9 @@ public class Job {
         this.relatives = relatives;
         this.status = status;
         this.ruleId = ruleId;
-        this.insertDateTime = insertDateTime;
-        this.updateDateTime = updateDateTime;
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        this.insertDateTime = new Date();
+        this.updateDateTime = new Date();
     }
 
     public int getId() {
@@ -94,21 +97,28 @@ public class Job {
         this.ruleId = ruleId;
     }
 
-    public Date getInsertDateTime() {
-        return insertDateTime;
+    public String getInsertDateTime() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        String date = dateFormat.format(insertDateTime);
+        return date;
     }
 
-    public void setInsertDateTime(Date insertDateTime) {
-        this.insertDateTime = insertDateTime;
+    public void setInsertDateTime(String time) throws ParseException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        this.insertDateTime = dateFormat.parse(time);
     }
 
-    public Date getUpdateDateTime() {
-        return updateDateTime;
+    public String getUpdateDateTime() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        String date = dateFormat.format(updateDateTime);
+        return date;
     }
 
-    public void setUpdateDateTime(Date updateDateTime) {
-        this.updateDateTime = updateDateTime;
+    public void setUpdateDateTime(String update) throws ParseException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        this.updateDateTime = dateFormat.parse(update);
     }
+
 
 }
 
