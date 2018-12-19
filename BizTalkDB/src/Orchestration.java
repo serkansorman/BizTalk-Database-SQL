@@ -1,3 +1,4 @@
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -62,7 +63,7 @@ public class Orchestration {
         return date;
     }
 
-    public void setInsertDateTime(String time) {
+    public void setInsertDateTime(String time) throws ParseException {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         this.InsertDateTime = dateFormat.parse(time);
     }
@@ -73,7 +74,7 @@ public class Orchestration {
         return date;
     }
 
-    public void setUpdateDateTime(String update) {
+    public void setUpdateDateTime(String update) throws ParseException {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         this.UpdateDateTime = dateFormat.parse(update);
     }
