@@ -1,16 +1,18 @@
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Date;
 
 public class OrchestrationDAO extends DBHandler {
 
-    public Orchestration getOrchestration(int OrchestrationID) throws Exception {
+    // status 0 olani döndürmeli ...
+    public Orchestration getOrchestration() throws Exception {
 
         Connection conn = getConnection();
         Orchestration orchestration = new Orchestration();
-        PreparedStatement preparedStmt = conn.prepareStatement("SELECT * FROM Orchestration WHERE OrchestrationId=?");
+        PreparedStatement preparedStmt = conn.prepareStatement("SELECT * FROM Orchestration WHERE Status=?");
 
-        preparedStmt.setInt(1, OrchestrationID);
+        preparedStmt.setInt(1, 0);
         ResultSet rs = preparedStmt.executeQuery();
 
         if(rs.next()) {
@@ -30,6 +32,31 @@ public class OrchestrationDAO extends DBHandler {
 
     }
 
+    // status olayı belirsiz....
+    public Orchestration getOrchestration(int OrchestrationOwner) throws Exception {
+
+        Connection conn = getConnection();
+        Orchestration orchestration = new Orchestration();
+        PreparedStatement preparedStmt = conn.prepareStatement("SELECT * FROM Orchestration WHERE OrchestrationOwner=?");
+
+        preparedStmt.setInt(1, OrchestrationOwner);
+        ResultSet rs = preparedStmt.executeQuery();
+
+        if(rs.next()) {
+            orchestration.setId(rs.getInt("OrchestrationId"));
+            orchestration.setOwnerID(rs.getInt("OrchestrationOwner"));
+            orchestration.setStatus(rs.getInt("Status"));
+            orchestration.setStartJobID(rs.getInt("StartJobId"));
+            orchestration.setInsertDateTime(rs.getString("InsertDateTime"));
+            orchestration.setUpdateDateTime(rs.getString("UpdateDateTime"));
+        }
+
+        closePreparedStatement(preparedStmt);
+        closeResultSet(rs);
+        closeConnection(conn);
+
+        return orchestration;
+    }
 
     public boolean insertOrchestration(Orchestration orchestration)  throws Exception {
 
@@ -48,6 +75,5 @@ public class OrchestrationDAO extends DBHandler {
         closeConnection(conn);
 
         return preparedStmt.execute();
-
     }
 }

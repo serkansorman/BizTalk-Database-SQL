@@ -68,6 +68,11 @@ public class Orchestration {
         this.InsertDateTime = dateFormat.parse(time);
     }
 
+    public void setInsertDateTime(Date time){
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        this.InsertDateTime = time;
+    }
+
     public String getUpdateDateTime() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         String date = dateFormat.format(UpdateDateTime);
