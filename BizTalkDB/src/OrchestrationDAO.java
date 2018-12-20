@@ -10,7 +10,6 @@ import java.util.Set;
 
 public class OrchestrationDAO extends DBHandler {
 
-    // status 0 olani döndürmeli ...
     public Orchestration getOrchestration() throws Exception {
 
         Connection conn = getConnection();
@@ -30,9 +29,7 @@ public class OrchestrationDAO extends DBHandler {
 
         return orchestration;
     }
-
-    // status olayı belirsiz....
-    // o kişiye ait tüm veriler döner ...
+    
     public Set<Orchestration> getOrchestration(int OrchestrationOwner) throws Exception {
 
         Connection conn = getConnection();
