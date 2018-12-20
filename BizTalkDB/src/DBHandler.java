@@ -2,6 +2,7 @@ import java.sql.*;
 
 public class DBHandler {
 
+    //DB oluşturulduktan sonra doldurulacak
     private String dbUrl="";
     private String userName="";
     private String password="";

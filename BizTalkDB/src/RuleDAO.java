@@ -31,6 +31,39 @@ public class RuleDAO extends DBHandler {
 
     }
 
+    public boolean updateRule(int ruleID, String columnName, int value)  throws Exception {
+
+        Connection conn = getConnection();
+
+        PreparedStatement preparedStmt = conn.prepareStatement("UPDATE Rules SET ? = ? WHERE RuleId = ?");
+
+        preparedStmt.setString(1,columnName);
+        preparedStmt.setInt(2,value);
+        preparedStmt.setInt(3,ruleID);
+
+        closePreparedStatement(preparedStmt);
+        closeConnection(conn);
+
+        return preparedStmt.execute();
+    }
+
+
+    public boolean updateRule(int ruleID, String columnName, String value)  throws Exception {
+
+        Connection conn = getConnection();
+
+        PreparedStatement preparedStmt = conn.prepareStatement("UPDATE Rules SET ? = ? WHERE RuleId = ?");
+
+        preparedStmt.setString(1,columnName);
+        preparedStmt.setString(2,value);
+        preparedStmt.setInt(3,ruleID);
+
+        closePreparedStatement(preparedStmt);
+        closeConnection(conn);
+
+        return preparedStmt.execute();
+    }
+
 
     public boolean insertRule(Rule rule)  throws Exception {
 
