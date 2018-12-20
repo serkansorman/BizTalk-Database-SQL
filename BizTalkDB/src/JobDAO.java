@@ -1,6 +1,8 @@
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class JobDAO extends DBHandler{
 
@@ -58,7 +60,53 @@ public class JobDAO extends DBHandler{
         return preparedStmt.execute();
     }
 
+    public boolean UpdateJob(int JobId, String columnName, int value) throws Exception {
 
+        Connection conn = getConnection();
 
+        PreparedStatement preparedStmt = conn.prepareStatement("UPDATE Jobs SET ? = ? WHERE JobId = ?");
 
+        preparedStmt.setString(1,columnName);
+        preparedStmt.setInt(2,value);
+        preparedStmt.setInt(3,JobId);
+
+        closePreparedStatement(preparedStmt);
+        closeConnection(conn);
+
+        return preparedStmt.execute();
+    }
+
+    public boolean UpdateJob(int JobId, String columnName, String value) throws Exception {
+
+        Connection conn = getConnection();
+
+        PreparedStatement preparedStmt = conn.prepareStatement("UPDATE Jobs SET ? = ? WHERE JobId = ?");
+
+        preparedStmt.setString(1,columnName);
+        preparedStmt.setString(2,value);
+        preparedStmt.setInt(3,JobId);
+
+        closePreparedStatement(preparedStmt);
+        closeConnection(conn);
+
+        return preparedStmt.execute();
+    }
+
+    public boolean UpdateJob(int JobId, String columnName, Date value) throws Exception {
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        String date = dateFormat.format(value);
+
+        Connection conn = getConnection();
+        PreparedStatement preparedStmt = conn.prepareStatement("UPDATE Jobs SET ? = ? WHERE JobId = ?");
+
+        preparedStmt.setString(1,columnName);
+        preparedStmt.setString(2,date);
+        preparedStmt.setInt(3,JobId);
+
+        closePreparedStatement(preparedStmt);
+        closeConnection(conn);
+
+        return preparedStmt.execute();
+    }
 }

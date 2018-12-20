@@ -14,6 +14,8 @@ public class Job {
     private Date insertDateTime;
     private Date updateDateTime;
 
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+
     public Job(){
 
     }
@@ -28,7 +30,6 @@ public class Job {
         this.relatives = relatives;
         this.status = status;
         this.ruleId = ruleId;
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         this.insertDateTime = new Date();
         this.updateDateTime = new Date();
     }
@@ -98,25 +99,24 @@ public class Job {
     }
 
     public String getInsertDateTime() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        String date = dateFormat.format(insertDateTime);
+
+        String date = this.dateFormat.format(insertDateTime);
         return date;
     }
 
     public void setInsertDateTime(String time) throws ParseException {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        this.insertDateTime = dateFormat.parse(time);
+
+        this.insertDateTime = this.dateFormat.parse(time);
     }
 
     public String getUpdateDateTime() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        String date = dateFormat.format(updateDateTime);
+        String date = this.dateFormat.format(updateDateTime);
         return date;
     }
 
     public void setUpdateDateTime(String update) throws ParseException {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        this.updateDateTime = dateFormat.parse(update);
+
+        this.updateDateTime = this.dateFormat.parse(update);
     }
 
 
