@@ -11,6 +11,8 @@ public class Orchestration {
     private Date InsertDateTime;
     private Date UpdateDateTime;
 
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+
     public Orchestration(){
 
     }
@@ -20,7 +22,6 @@ public class Orchestration {
         this.ownerID = ownerID;
         this.status = status;
         this.startJobID = startJobID;
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         InsertDateTime = new Date();
         UpdateDateTime = new Date();
     }
@@ -58,29 +59,24 @@ public class Orchestration {
     }
 
     public String getInsertDateTime() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         String date = dateFormat.format(InsertDateTime);
         return date;
     }
 
     public void setInsertDateTime(String time) throws ParseException {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         this.InsertDateTime = dateFormat.parse(time);
     }
 
     public void setInsertDateTime(Date time){
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         this.InsertDateTime = time;
     }
 
     public String getUpdateDateTime() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         String date = dateFormat.format(UpdateDateTime);
         return date;
     }
 
     public void setUpdateDateTime(String update) throws ParseException {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         this.UpdateDateTime = dateFormat.parse(update);
     }
 }
